@@ -1,19 +1,14 @@
 import React from "react";
+import Replies from "../Replies/Replies";
 
-function Comment() {
-  const [comments, setComments] = React.useState([]);
-
-  React.useEffect(() => {
-    const data = require("../../data.json");
-    setComments(data.comments);
-  }, []);
+function Comment({ data }) {
+  const { content, createdAt, id, replies, score, user } = data;
 
   return (
-    <ul>
-      {comments.map((comment) => (
-        <li key={comment.id}>{comment.content}</li>
-      ))}
-    </ul>
+    <li key={id}>
+      {content}
+      {replies.length > 1 && <Replies replies={replies} />}
+    </li>
   );
 }
 

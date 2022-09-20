@@ -1,10 +1,10 @@
 import React from "react";
-import Comment from "../Comment/Comment";
+import Comments from "../Comments/Comments";
 
 function App() {
   return (
     <div>
-      <Comment />
+      <Comments />
     </div>
   );
 }
