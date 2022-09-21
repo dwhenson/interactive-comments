@@ -1,10 +1,10 @@
 import React from "react";
-import Comments from "../Comments/Comments";
+import Threads from "../Threads/Threads";
 
 function App() {
   return (
     <div>
-      <Comments />
+      <Threads />
     </div>
   );
 }

@@ -1,14 +1,18 @@
 import React from "react";
-import Replies from "../Replies/Replies";
+import User from "../User/User";
+import Score from "../Score/Score";
 
-function Comment({ data }) {
-  const { content, createdAt, id, replies, score, user } = data;
-
+function Comment({ content, createdAt, score, user }) {
   return (
-    <li key={id}>
-      {content}
-      {replies.length > 1 && <Replies replies={replies} />}
-    </li>
+    <div className="reply">
+      <User
+        user={user.username}
+        image={user.image.webp}
+        createdAt={createdAt}
+      />
+      <p>{content}</p>
+      <Score score={score} />
+    </div>
   );
 }
 

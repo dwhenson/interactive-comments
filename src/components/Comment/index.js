@@ -1,2 +1,2 @@
-export * from "./Comment";
-export { default } from "./Comment";
+export * from "./Reply";
+export { default } from "./Reply";
