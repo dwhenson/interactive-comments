@@ -2,12 +2,12 @@ import React from "react";
 
 function User({ user, image, createdAt }) {
   return (
-    <div>
+    <div className="user">
       <div>
         <img src={image} alt="" />
-        <p>{user}</p>
-        <p>{createdAt}</p>
       </div>
+      <p className="username">{user}</p>
+      <p>{createdAt}</p>
     </div>
   );
 }
