@@ -246,7 +246,7 @@ body {
 /* Reply button
    ================================================== */
 
-.reply-button {
+.button-minor {
   position: absolute;
   display: inline-flex;
   align-items: center;
@@ -258,20 +258,20 @@ body {
   cursor: pointer;
 }
 
-.reply-button:hover {
+.button-minor:hover {
   color: var(--clr-primary-200);
 }
 
-.reply-button path {
+.button-minor path {
   transition: fill 250ms;
 }
 
-.reply-button:hover path {
+.button-minor:hover path {
   fill: var(--clr-primary-200);
 }
 
 @media only screen and (max-width:550px) {
-  .reply-button {
+  .button-minor {
     inset-block-end: 1.5rem;
     inset-inline-end: 1.5rem;
   }
