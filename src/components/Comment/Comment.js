@@ -15,7 +15,7 @@ function Comment({ content, createdAt, score, user }) {
         <p className="content">{content}</p>
       </div>
       <Score score={score} />
-      <ButtonMinor type={"reply"} />
+      <ButtonMinor action={"reply"} />
     </div>
   );
 }

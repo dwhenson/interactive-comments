@@ -1,6 +1,6 @@
 import React from "react";
 
-function ButtonMinor({ type }) {
+function ButtonMinor({ action }) {
   return (
     <button className="button-minor">
       <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg">
@@ -9,7 +9,7 @@ function ButtonMinor({ type }) {
           fill="#5357B6"
         />
       </svg>
-      <span>{type}</span>
+      <span>{action}</span>
     </button>
   );
 }

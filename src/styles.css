@@ -177,8 +177,8 @@ body {
 
 :focus-visible {
   opacity: 1 !important;
-  outline: 4px solid var(--clr-neutral-500);
-  outline-offset: 4px;
+  outline: 2px solid var(--clr-primary-400);
+  outline-offset: 2px;
 }
 
 :focus:not(:focus-visible) {
@@ -221,6 +221,7 @@ body {
   background-color: var(--clr-neutral-100);
 }
 
+
 @media only screen and (max-width:550px) {
   .card {
     flex-direction: column;
@@ -229,6 +230,12 @@ body {
   }
 }
 
+.content {
+  margin-block-start: 1rem;
+}
+
+/* Cards
+   ================================================== */
 
 .comments .card {
   margin-block-start: 2rem;
@@ -239,44 +246,24 @@ body {
   margin-inline-start: 2rem;
 }
 
-.content {
-  margin-block-start: 1rem;
+.add-comment .card {
+  flex-direction: row;
+  /* align-items: start; */
+  margin-block-start: 2rem;
 }
 
-/* Reply button
-   ================================================== */
-
-.button-minor {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  border: none;
-  background-color: var(--clr-neutral-100);
-  transition: color 250ms;
-  color: var(--clr-primary-100);
-  cursor: pointer;
+.add-comment img {
+  max-inline-size: 3rem;
 }
 
-.button-minor:hover {
-  color: var(--clr-primary-200);
+.add-comment textarea {
+  flex-grow: 1;
+  block-size: 8ch;
+  padding: 1rem;
+  border: 1px solid var(--clr-primary-100);
+  border-radius: 0.5em;
+  color: var(--clr-neutral-500);
 }
-
-.button-minor path {
-  transition: fill 250ms;
-}
-
-.button-minor:hover path {
-  fill: var(--clr-primary-200);
-}
-
-@media only screen and (max-width:550px) {
-  .button-minor {
-    inset-block-end: 1.5rem;
-    inset-inline-end: 1.5rem;
-  }
-}
-
 /* User Details
  ================================================== */
 
@@ -296,8 +283,10 @@ body {
 }
 
 
-/* Score
+/* Buttons
  ================================================== */
+
+/* Score buttons */
 
 .score {
   display: flex;
@@ -342,4 +331,55 @@ body {
     padding-block: 0.5em;
     padding-inline: 1.25em;
   }
+}
+
+/* Minor Button */
+
+.button-minor {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  border: none;
+  background-color: var(--clr-neutral-100);
+  transition: color 250ms;
+  color: var(--clr-primary-100);
+  cursor: pointer;
+}
+
+.button-minor:hover {
+  color: var(--clr-primary-200);
+}
+
+.button-minor path {
+  transition: fill 250ms;
+}
+
+.button-minor:hover path {
+  fill: var(--clr-primary-200);
+}
+
+@media only screen and (max-width:550px) {
+  .button-minor {
+    inset-block-end: 1.5rem;
+    inset-inline-end: 1.5rem;
+  }
+}
+
+
+/* Major Button */
+
+.button-major {
+  padding-block: 0.5em;
+  padding-inline: 2em;
+  border: none;
+  border-radius: 0.5em;
+  background-color: var(--clr-primary-100);
+  transition: background-color 250ms;
+  color: var(--clr-neutral-100);
+  cursor: pointer;
+}
+
+.button-major:hover {
+  background-color: var(--clr-primary-200);
 }
