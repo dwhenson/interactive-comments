@@ -1,7 +1,15 @@
 import React from "react";
 import ButtonMajor from "../ButtonMajor/ButtonMajor";
 
-function AddComment({ currentUser, threads, setThreads, action }) {
+function AddComment({
+  currentUser,
+  threads,
+  setThreads,
+  action = "send",
+  replies,
+  setReplies,
+  setReply,
+}) {
   const [text, setText] = React.useState("");
   const textarea = React.useRef();
 
@@ -15,7 +23,7 @@ function AddComment({ currentUser, threads, setThreads, action }) {
     event.preventDefault();
     if (!text) return;
 
-    const newThread = {
+    const newItem = {
       id: crypto.randomUUID().slice(0, 6),
       content: text,
       createdAt: "Just now",
@@ -27,12 +35,19 @@ function AddComment({ currentUser, threads, setThreads, action }) {
         },
         username: currentUser?.username,
       },
-      replies: [],
     };
 
-    const nextThreads = [...threads, newThread];
-    // FIXME threads all disspear and only one can be added, with the final item being replaced each time
-    setThreads(nextThreads);
+    if (action === "send") {
+      const nextThreads = [...threads, { ...newItem, replies: [] }];
+      setThreads(nextThreads);
+    }
+
+    if (action === "reply") {
+      const nextReplies = [...replies, newItem];
+      setReplies(nextReplies);
+      setReply(false);
+    }
+
     setText("");
   }
 

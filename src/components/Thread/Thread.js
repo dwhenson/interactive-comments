@@ -3,20 +3,27 @@ import Comment from "../Comment/Comment";
 import Replies from "../Replies/Replies";
 
 function Thread({ thread, currentUser }) {
-  // FIXME Sort out whether to destructure or not
-  const { content, createdAt, id, replies, score, user } = thread;
+  const { content, createdAt, score, user } = thread;
+  const [replies, setReplies] = React.useState(thread.replies);
 
   return (
-    <li key={id}>
+    <li>
       <Comment
         content={content}
         createdAt={createdAt}
         score={score}
         user={user}
         currentUser={currentUser}
+        replies={replies}
+        setReplies={setReplies}
       />
-      {replies.length > 1 && (
-        <Replies replies={replies} currentUser={currentUser} />
+      {replies.length > 0 && (
+        <Replies
+          currentUser={currentUser}
+          thread={thread}
+          replies={replies}
+          setReplies={setReplies}
+        />
       )}
     </li>
   );
