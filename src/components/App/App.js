@@ -4,16 +4,22 @@ import AddComment from "../AddComment/AddComment";
 
 function App() {
   const [threads, setThreads] = React.useState([]);
+  const [currentUser, setcurrentUser] = React.useState({});
 
   React.useEffect(() => {
     const data = require("../../data.json");
-    setThreads(data);
+    setThreads(data.comments);
+    setcurrentUser(data.currentUser);
   }, []);
 
   return (
     <>
-      <Threads threads={threads.comments} />
-      <AddComment userData={threads.currentUser} />
+      <Threads currentUser={currentUser} threads={threads} />
+      <AddComment
+        currentUser={currentUser}
+        threads={threads}
+        setThreads={setThreads}
+      />
     </>
   );
 }

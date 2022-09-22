@@ -221,6 +221,10 @@ body {
   background-color: var(--clr-neutral-100);
 }
 
+.card > div:not([class]) {
+  flex-grow: 1;
+}
+
 
 @media only screen and (max-width:550px) {
   .card {
@@ -248,7 +252,6 @@ body {
 
 .add-comment .card {
   flex-direction: row;
-  /* align-items: start; */
   margin-block-start: 2rem;
 }
 
@@ -376,6 +379,9 @@ body {
   border-radius: 0.5em;
   background-color: var(--clr-primary-100);
   transition: background-color 250ms;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--clr-neutral-100);
   cursor: pointer;
 }

@@ -1,7 +1,9 @@
 import React from "react";
 import Comment from "../Comment/Comment";
 
-function Replies({ replies }) {
+function Replies({ replies, currentUser }) {
+  console.log(currentUser);
+
   return (
     // eslint-disable-next-line
     <ul role="list" className="replies">
@@ -12,6 +14,7 @@ function Replies({ replies }) {
             createdAt={createdAt}
             score={score}
             user={user}
+            currentUser={currentUser}
           />
         </li>
       ))}
