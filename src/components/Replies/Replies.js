@@ -1,7 +1,14 @@
 import React from "react";
 import Comment from "../Comment/Comment";
 
-function Replies({ currentUser, thread, replies, setReplies }) {
+function Replies({
+  currentUser,
+  thread,
+  replies,
+  setReplies,
+  showModal,
+  setShowModal,
+}) {
   return (
     // eslint-disable-next-line
     <ul role="list" className="replies">
@@ -16,6 +23,8 @@ function Replies({ currentUser, thread, replies, setReplies }) {
             thread={thread}
             replies={replies}
             setReplies={setReplies}
+            showModal={showModal}
+            setShowModal={setShowModal}
           />
         </li>
       ))}

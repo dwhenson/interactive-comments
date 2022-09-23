@@ -209,16 +209,25 @@ body {
 
 /* Card Layout
  ================================================== */
-
 .card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: var(--clr-neutral-100);
+}
+
+.card-wrapper {
   position: relative;
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-start;
   gap: 2rem;
-  padding: 2rem;
-  border-radius: 2rem;
-  background-color: var(--clr-neutral-100);
+}
+
+@media only screen and (max-width:600px) {
+  .card-wrapper {
+    flex-direction: column;
+  }
 }
 
 .card > div:not([class]) {
@@ -226,7 +235,7 @@ body {
 }
 
 
-@media only screen and (max-width:550px) {
+@media only screen and (max-width:600px) {
   .card {
     flex-direction: column;
     gap: 1rem;
@@ -250,9 +259,20 @@ body {
   margin-inline-start: 2rem;
 }
 
-.add-comment .card {
-  flex-direction: row;
+.add-comment {
   margin-block-start: 2rem;
+}
+
+.add-comment .card-wrapper {
+  flex-direction: row;
+}
+
+@media only screen and (max-width:600px) {
+  .add-comment .card-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+    /* padding: 1.5rem; */
+  }
 }
 
 .add-comment img {
@@ -261,11 +281,19 @@ body {
 
 .add-comment textarea {
   flex-grow: 1;
+  inline-size: 100%;
   block-size: 8ch;
   padding: 1rem;
   border: 1px solid var(--clr-primary-100);
   border-radius: 0.5em;
   color: var(--clr-neutral-500);
+}
+
+@media only screen and (max-width:600px) {
+  .add-comment textarea {
+    flex-grow: 1;
+    order: -1;
+  }
 }
 /* User Details
  ================================================== */
@@ -286,6 +314,39 @@ body {
 }
 
 
+/* Modal
+   ================================================== */
+
+.modalDialog {
+  position: fixed;
+  z-index: 99999;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.8);
+  transition: opacity 250ms;
+  inset: 0;
+}
+
+.modalDialog>.wrapper {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: min(calc(100% - 2rem), 30rem);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-inline-end: -50%;
+  background-color: var(--clr-neutral-100);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.modalDialog .heading {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modalDialog .content {
+  margin-block-start: 1.5rem;
+}
 /* Buttons
  ================================================== */
 
@@ -325,7 +386,7 @@ body {
   color: var(--clr-primary-100);
 }
 
-@media only screen and (max-width:550px) {
+@media only screen and (max-width:600px) {
   .score {
     flex-direction: row;
   }
@@ -363,10 +424,10 @@ body {
   fill: var(--clr-primary-200);
 }
 
-@media only screen and (max-width:550px) {
+@media only screen and (max-width:600px) {
   .button-minor {
-    inset-block-end: 1.5rem;
-    inset-inline-end: 1.5rem;
+    inset-block-end: 0;
+    inset-inline-end: 0;
   }
 }
 
@@ -375,6 +436,7 @@ body {
 .button-wrapper {
   position: absolute;
   display: inline-flex;
+  inset-inline-end: 2rem;
   align-items: center;
   gap: 0.5em;
   border: none;
@@ -385,10 +447,10 @@ body {
   cursor: pointer;
 }
 
-@media only screen and (max-width:550px) {
+@media only screen and (max-width:600px) {
   .button-wrapper {
-    inset-block-end: 1.5rem;
-    inset-inline-end: 1.5rem;
+    inset-block-end: 0;
+    inset-inline-end: 0;
   }
 }
 
@@ -443,4 +505,34 @@ body {
 
 .button-major:hover {
   background-color: var(--clr-primary-200);
+}
+
+.button-major.update {
+  margin-block-start: 1rem;
+  margin-inline-start: calc(100%);
+  transform: translateX(-100%);
+}
+
+.modal-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: 1rem;
+}
+
+.button-major.cancel {
+  position: static;
+  background-color: var(--clr-neutral-400);
+}
+
+.button-major.delete {
+  position: static;
+  background-color: var(--clr-primary-300);
+}
+
+@media only screen and (max-width:600px) {
+  .add-comment .button-major {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+  }
 }
