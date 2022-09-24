@@ -1,6 +1,10 @@
 import React from "react";
 
-function Modal({ showModal, setShowModal }) {
+function Modal({ setShowModal }) {
+  function deleteItem() {
+    setShowModal(false);
+  }
+
   return (
     <div id="openModal" className="modalDialog">
       <div className="wrapper">
@@ -15,7 +19,11 @@ function Modal({ showModal, setShowModal }) {
             onClick={() => setShowModal(false)}>
             No, Cancel
           </button>
-          <button className="button-major delete">Yes, Delete</button>
+          <button
+            className="button-major delete"
+            onClick={(event) => deleteItem(event)}>
+            Yes, Delete
+          </button>
         </div>
       </div>
     </div>

@@ -4,15 +4,16 @@ import Comment from "../Comment/Comment";
 function Replies({
   currentUser,
   thread,
-  replies,
-  setReplies,
+  setThreads,
+  // replies,
+  // setReplies,
   showModal,
   setShowModal,
 }) {
   return (
     // eslint-disable-next-line
     <ul role="list" className="replies">
-      {replies.map(({ content, createdAt, id, score, user }) => (
+      {thread.replies.map(({ content, createdAt, id, score, user }) => (
         <li key={id}>
           <Comment
             content={content}
@@ -21,8 +22,9 @@ function Replies({
             user={user}
             currentUser={currentUser}
             thread={thread}
-            replies={replies}
-            setReplies={setReplies}
+            setThreads={setThreads}
+            // replies={replies}
+            // setReplies={setReplies}
             showModal={showModal}
             setShowModal={setShowModal}
           />

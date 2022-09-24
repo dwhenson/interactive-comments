@@ -4,6 +4,7 @@ import Score from "../Score/Score";
 import ButtonMinor from "../ButtonMinor/ButtonMinor";
 import AddComment from "../AddComment/AddComment";
 import ButtonMajor from "../ButtonMajor/ButtonMajor";
+import Modal from "../Modal/Modal";
 
 function Comment({
   content,
@@ -12,13 +13,16 @@ function Comment({
   user,
   currentUser,
   thread,
-  replies,
-  setReplies,
+  threads,
+  setThreads,
+  // replies,
+  // setReplies,
   showModal,
   setShowModal,
 }) {
   const [reply, setReply] = React.useState(false);
   const [editable, setEditable] = React.useState(false);
+  const editableContent = React.useRef();
 
   return (
     <>
@@ -30,7 +34,10 @@ function Comment({
               image={user.image.webp}
               createdAt={createdAt}
             />
-            <p className="content" contentEditable={editable}>
+            <p
+              className="content"
+              contentEditable={editable}
+              ref={editableContent}>
               {content}
             </p>
           </div>
@@ -46,8 +53,11 @@ function Comment({
             thread={thread}
             editable={editable}
             setEditable={setEditable}
+            editableContent={editableContent}
           />
         </div>
+        {showModal && <Modal setShowModal={setShowModal} />}
+
         {editable && (
           <ButtonMajor action={"update"} setEditable={setEditable} />
         )}
@@ -57,8 +67,10 @@ function Comment({
           currentUser={currentUser}
           thread={thread}
           action={"reply"}
-          replies={replies}
-          setReplies={setReplies}
+          threads={threads}
+          setThreads={setThreads}
+          // replies={replies}
+          // setReplies={setReplies}
           setReply={setReply}
         />
       )}
