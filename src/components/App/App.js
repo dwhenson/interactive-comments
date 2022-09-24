@@ -5,7 +5,6 @@ import AddComment from "../AddComment/AddComment";
 function App() {
   const [threads, setThreads] = React.useState([]);
   const [currentUser, setcurrentUser] = React.useState({});
-  // const [showModal, setShowModal] = React.useState(false);
 
   React.useEffect(() => {
     const data = require("../../data.json");

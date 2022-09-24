@@ -1,8 +1,21 @@
 import React from "react";
 
-function Modal({ setShowModal }) {
+function Modal({ setShowModal, thread, threads, setThreads, itemId }) {
   function deleteItem() {
-    setShowModal(false);
+    if (thread.replies.find((item) => String(item.replyId) === itemId)) {
+      const nextReplies = [
+        ...thread.replies.filter((item) => String(item.replyId) !== itemId),
+      ];
+      const updatedThread = { ...thread, replies: nextReplies };
+      const nextThreads = threads.map((thread) =>
+        thread.id !== updatedThread.id ? thread : updatedThread
+      );
+      return setThreads(nextThreads);
+    }
+    const nextThreads = [
+      ...threads.filter((item) => String(item.id) !== itemId),
+    ];
+    return setThreads(nextThreads);
   }
 
   return (
@@ -19,9 +32,7 @@ function Modal({ setShowModal }) {
             onClick={() => setShowModal(false)}>
             No, Cancel
           </button>
-          <button
-            className="button-major delete"
-            onClick={(event) => deleteItem(event)}>
+          <button className="button-major delete" onClick={() => deleteItem()}>
             Yes, Delete
           </button>
         </div>

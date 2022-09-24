@@ -42,14 +42,14 @@ function AddComment({
     }
 
     if (action === "reply") {
-      const addedReply = [...thread.replies, newItem];
+      const newReply = { ...newItem, replyId: crypto.randomUUID().slice(0, 6) };
+      const addedReply = [...thread.replies, newReply];
       const updatedThread = { ...thread, replies: addedReply };
       const nextThreads = threads.map((thread) =>
         thread.id !== updatedThread.id ? thread : updatedThread
       );
       setThreads(nextThreads);
       setReply(false);
-      // console.log(nextThreads);
     }
 
     setText("");

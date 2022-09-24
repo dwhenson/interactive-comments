@@ -15,6 +15,7 @@ function Comment({
   thread,
   threads,
   setThreads,
+  replyId,
   // replies,
   // setReplies,
   showModal,
@@ -26,7 +27,7 @@ function Comment({
 
   return (
     <>
-      <div className="card">
+      <div className="card" id={replyId ?? thread.id}>
         <div className="card-wrapper">
           <div style={{ width: "100%" }}>
             <User
@@ -51,12 +52,13 @@ function Comment({
             showModal={showModal}
             setShowModal={setShowModal}
             thread={thread}
+            threads={threads}
+            setThreads={setThreads}
             editable={editable}
             setEditable={setEditable}
             editableContent={editableContent}
           />
         </div>
-        {showModal && <Modal setShowModal={setShowModal} />}
 
         {editable && (
           <ButtonMajor action={"update"} setEditable={setEditable} />
