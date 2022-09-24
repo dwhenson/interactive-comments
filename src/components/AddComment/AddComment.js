@@ -3,11 +3,10 @@ import ButtonMajor from "../ButtonMajor/ButtonMajor";
 
 function AddComment({
   currentUser,
+  thread,
   threads,
   setThreads,
   action = "send",
-  replies,
-  setReplies,
   setReply,
 }) {
   const [text, setText] = React.useState("");
@@ -16,7 +15,7 @@ function AddComment({
   React.useEffect(() => {
     textarea.current.scrollIntoView();
     textarea.current.focus();
-  }, [threads]);
+  }, []);
 
   // HACK need to add "?" here?
   function handleAddComment(event) {
@@ -43,9 +42,14 @@ function AddComment({
     }
 
     if (action === "reply") {
-      const nextReplies = [...replies, newItem];
-      setReplies(nextReplies);
+      const addedReply = [...thread.replies, newItem];
+      const updatedThread = { ...thread, replies: addedReply };
+      const nextThreads = threads.map((thread) =>
+        thread.id !== updatedThread.id ? thread : updatedThread
+      );
+      setThreads(nextThreads);
       setReply(false);
+      // console.log(nextThreads);
     }
 
     setText("");
