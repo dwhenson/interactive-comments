@@ -23,6 +23,8 @@ function Comment({
 }) {
   const [reply, setReply] = React.useState(false);
   const [editable, setEditable] = React.useState(false);
+  const [itemId, setItemId] = React.useState();
+  const [newContent, setNewContent] = React.useState(content);
   const editableContent = React.useRef();
 
   return (
@@ -35,12 +37,20 @@ function Comment({
               image={user.image.webp}
               createdAt={createdAt}
             />
-            <p
-              className="content"
-              contentEditable={editable}
-              ref={editableContent}>
-              {content}
-            </p>
+            {editable && (
+              <textarea
+                className="content"
+                ref={editableContent}
+                value={newContent}
+                onChange={(event) => setNewContent(event.target.value)}>
+                {content}
+              </textarea>
+            )}
+            {editable || (
+              <p className="content" ref={editableContent}>
+                {content}
+              </p>
+            )}
           </div>
           <Score score={score} />
           <ButtonMinor
@@ -57,11 +67,22 @@ function Comment({
             editable={editable}
             setEditable={setEditable}
             editableContent={editableContent}
+            itemId={itemId}
+            setItemId={setItemId}
           />
         </div>
 
         {editable && (
-          <ButtonMajor action={"update"} setEditable={setEditable} />
+          <ButtonMajor
+            action={"update"}
+            setEditable={setEditable}
+            newContent={newContent}
+            thread={thread}
+            threads={threads}
+            setThreads={setThreads}
+            itemId={itemId}
+            setItemId={setItemId}
+          />
         )}
       </div>
       {reply && (

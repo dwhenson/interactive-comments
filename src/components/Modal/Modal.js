@@ -11,11 +11,12 @@ function Modal({ setShowModal, thread, threads, setThreads, itemId }) {
         thread.id !== updatedThread.id ? thread : updatedThread
       );
       return setThreads(nextThreads);
+    } else {
+      const nextThreads = [
+        ...threads.filter((item) => String(item.id) !== itemId),
+      ];
+      return setThreads(nextThreads);
     }
-    const nextThreads = [
-      ...threads.filter((item) => String(item.id) !== itemId),
-    ];
-    return setThreads(nextThreads);
   }
 
   return (
