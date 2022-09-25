@@ -12,7 +12,7 @@ function Thread({
 }) {
   const { content, createdAt, score, user } = thread;
   // const [replies, setReplies] = React.useState(thread.replies);
-
+  const [reply, setReply] = React.useState(false);
   return (
     <li>
       <Comment
@@ -21,8 +21,8 @@ function Thread({
         score={score}
         user={user}
         currentUser={currentUser}
-        // replies={thread.replies}
-        // setReplies={setReplies}
+        reply={reply}
+        setReply={setReply}
         showModal={showModal}
         setShowModal={setShowModal}
         thread={thread}
@@ -30,14 +30,14 @@ function Thread({
         setThreads={setThreads}
       />
 
-      {thread.replies.length > 0 && (
+      {(thread.replies.length > 0 || reply) && (
         <Replies
           currentUser={currentUser}
           thread={thread}
           threads={threads}
           setThreads={setThreads}
-          // replies={thread.replies}
-          // setReplies={setReplies}
+          reply={reply}
+          setReply={setReply}
           showModal={showModal}
           setShowModal={setShowModal}
         />

@@ -16,12 +16,11 @@ function Comment({
   threads,
   setThreads,
   replyId,
-  // replies,
-  // setReplies,
+  reply,
+  setReply,
   showModal,
   setShowModal,
 }) {
-  const [reply, setReply] = React.useState(false);
   const [editable, setEditable] = React.useState(false);
   const [itemId, setItemId] = React.useState();
   const [newContent, setNewContent] = React.useState(content);
@@ -85,18 +84,6 @@ function Comment({
           />
         )}
       </div>
-      {reply && (
-        <AddComment
-          currentUser={currentUser}
-          thread={thread}
-          action={"reply"}
-          threads={threads}
-          setThreads={setThreads}
-          // replies={replies}
-          // setReplies={setReplies}
-          setReply={setReply}
-        />
-      )}
     </>
   );
 }
