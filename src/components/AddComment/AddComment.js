@@ -59,17 +59,20 @@ function AddComment({
     <form className="add-comment" onSubmit={handleAddComment}>
       <div className="card">
         <div className="card-wrapper">
-          {/* HACK need to add "?" here?*/}
           <img
             src={`./images/avatars/image-${currentUser.username}.webp`}
             alt=""
           />
           <textarea
             ref={textarea}
-            type="text"
+            placeholder={"Add comment..."}
             value={text}
+            id="addComment"
             onChange={(event) => setText(event.target.value)}
           />
+          <label htmlFor="addComment" className="visually-hidden">
+            Add comment
+          </label>
           <ButtonMajor action={action} />
         </div>
       </div>

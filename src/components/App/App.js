@@ -28,6 +28,7 @@ function App() {
 
   return (
     <>
+      <h1 className="visually-hidden">Comments</h1>
       <Threads
         currentUser={currentUser}
         threads={threads}

@@ -174,7 +174,6 @@ body {
   color: var(--clr-neutral-400);
 }
 
-
 :focus-visible {
   opacity: 1 !important;
   outline: 2px solid var(--clr-primary-400);
@@ -197,6 +196,31 @@ body {
 .align-content > * {
   grid-column: 2;
 }
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  margin: 0;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.visually-hidden:hover,
+.visually-hidden:active,
+.visually-hidden:focus {
+  position: static;
+  inline-size: auto;
+  block-size: auto;
+  overflow: visible;
+  margin: 0;
+  white-space: normal;
+  clip: auto;
+}
+
 
 /* ==================================================
    Blocks
