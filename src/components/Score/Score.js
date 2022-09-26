@@ -21,8 +21,9 @@ function Score({ score, currentUser, thread, threads, itemId, setItemId }) {
 
   // TODO refactor into one function?
   function increaseScore(event) {
-    setItemId(event.target.closest(".card").id);
-    if (!!checkIfCurrentUser(event.target.closest(".card").id)) return;
+    const nextItemId = event.target.closest(".card").id;
+    setItemId(nextItemId);
+    if (!!checkIfCurrentUser(nextItemId)) return;
     if (alreadyClicked.add.includes(currentUser.username)) return;
 
     setNewScore(newScore + 1);
@@ -35,8 +36,9 @@ function Score({ score, currentUser, thread, threads, itemId, setItemId }) {
   }
 
   function decreaseScore(event) {
-    setItemId(event.target.closest(".card").id);
-    if (!!checkIfCurrentUser(event.target.closest(".card").id)) return;
+    const nextItemId = event.target.closest(".card").id;
+    setItemId(nextItemId);
+    if (!!checkIfCurrentUser(nextItemId)) return;
     if (alreadyClicked.minus.includes(currentUser.username)) return;
 
     setNewScore(newScore - 1);
@@ -47,8 +49,6 @@ function Score({ score, currentUser, thread, threads, itemId, setItemId }) {
       minus: [...alreadyClicked.minus, currentUser.username],
     });
   }
-
-  console.log(!!checkIfCurrentUser(itemId));
 
   return (
     <div className="score">
