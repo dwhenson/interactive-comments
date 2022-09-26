@@ -15,7 +15,6 @@ function App() {
 
   return (
     <>
-      <ChangeUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Threads
         currentUser={currentUser}
         threads={threads}
@@ -26,6 +25,7 @@ function App() {
         threads={threads}
         setThreads={setThreads}
       />
+      <ChangeUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
     </>
   );
 }
