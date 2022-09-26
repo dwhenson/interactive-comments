@@ -450,7 +450,7 @@ body {
 .button-wrapper {
   position: absolute;
   display: inline-flex;
-  inset-inline-end: 2rem;
+  /* inset-inline-end: 2rem; */
   align-items: center;
   gap: 0.5em;
   border: none;

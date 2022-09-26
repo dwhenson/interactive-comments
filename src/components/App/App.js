@@ -2,16 +2,29 @@ import React from "react";
 import Threads from "../Threads/Threads";
 import AddComment from "../AddComment/AddComment";
 import ChangeUser from "../ChangeUser/ChangeUser";
+const data = require("../../data.json");
 
 function App() {
-  const [threads, setThreads] = React.useState([]);
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [threads, setThreads] = usePersistState(data.comments, "comments");
+  const [currentUser, setCurrentUser] = usePersistState(
+    data.currentUser,
+    "user"
+  );
 
-  React.useEffect(() => {
-    const data = require("../../data.json");
-    setThreads(data.comments);
-    setCurrentUser(data.currentUser);
-  }, []);
+  function usePersistState(defaultValue, key) {
+    const [value, setValue] = React.useState(() => {
+      const persistantValue = window.localStorage.getItem(key);
+      return persistantValue !== null
+        ? JSON.parse(persistantValue)
+        : defaultValue;
+    });
+
+    React.useEffect(() => {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+
+    return [value, setValue];
+  }
 
   return (
     <>
