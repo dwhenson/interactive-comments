@@ -51,7 +51,14 @@ function Comment({
               </p>
             )}
           </div>
-          <Score score={score} currentUser={currentUser} thread={thread} />
+          <Score
+            score={score}
+            currentUser={currentUser}
+            thread={thread}
+            threads={threads}
+            itemId={itemId}
+            setItemId={setItemId}
+          />
           <ButtonMinor
             action={"Reply"}
             reply={reply}
