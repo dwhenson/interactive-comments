@@ -57,7 +57,7 @@ function ButtonMinor({
               fill="#5357B6"
             />
           </svg>
-          <span>Edit</span>
+          <span>{editable ? "Cancel" : "Edit"}</span>
         </button>
         {showModal && (
           <Modal

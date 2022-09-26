@@ -191,7 +191,7 @@ body {
 
 .align-content {
   display: grid;
-  grid-template-columns: minmax(1rem, 1fr) minmax(320px, 800px) minmax(1rem, 1fr);
+  grid-template-columns: minmax(1rem, 1fr) minmax(0, 800px) minmax(1rem, 1fr);
 }
 
 .align-content > * {
@@ -319,10 +319,8 @@ body {
 .modalDialog {
   position: fixed;
   z-index: 99999;
-  /* opacity: 1; */
   background: rgba(0, 0, 0, 0.2);
   transition: opacity 250ms;
-  color: var(--clr-neutral-500);
   inset: 0;
 }
 
@@ -342,11 +340,14 @@ body {
 .modalDialog .heading {
   font-weight: 700;
   text-transform: uppercase;
+  color: var(--clr-neutral-500);
 }
 
 .modalDialog .content {
   margin-block-start: 1.5rem;
   margin-block-end: 1.5rem;
+  font-weight: 400;
+  color: var(--clr-neutral-400);
 }
 
 
@@ -460,10 +461,16 @@ body {
   cursor: pointer;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:620px) {
   .button-wrapper {
     inset-block-end: 0;
     inset-inline-end: 0;
+  }
+}
+
+@media only screen and (max-width:400px) {
+  .button-wrapper {
+    flex-direction: column-reverse;
   }
 }
 
