@@ -1,20 +1,24 @@
 import React from "react";
+import findItem from "../../helpers/findItem";
+import addUpdatedItem from "../../helpers/addUpdatedItem";
 
 function Modal({ setShowModal, thread, threads, setThreads, itemId }) {
   function deleteItem() {
-    if (thread.replies.find((item) => String(item.replyId) === itemId)) {
+    const reply = findItem(thread.replies, "replyId", itemId);
+    if (reply) {
       const nextReplies = [
         ...thread.replies.filter((item) => String(item.replyId) !== itemId),
       ];
       const updatedThread = { ...thread, replies: nextReplies };
-      const nextThreads = threads.map((thread) =>
-        thread.id !== updatedThread.id ? thread : updatedThread
-      );
+      const nextThreads = addUpdatedItem(threads, "id", updatedThread);
       return setThreads(nextThreads);
-    } else {
+    }
+    const comment = findItem(threads, "id", itemId);
+    if (comment) {
       const nextThreads = [
         ...threads.filter((item) => String(item.id) !== itemId),
       ];
+      console.log(threads, "id", "itemId");
       return setThreads(nextThreads);
     }
   }

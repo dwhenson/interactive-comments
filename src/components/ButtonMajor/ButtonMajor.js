@@ -1,45 +1,42 @@
 import React from "react";
+import findItem from "../../helpers/findItem";
+import addUpdatedItem from "../../helpers/addUpdatedItem";
 
 function ButtonMajor({
   action,
-  setEditable = () => console.log("ran"),
+  setEditable,
   newContent,
   itemId,
   thread,
   threads,
   setThreads,
 }) {
-  // const [itemId, SetItemId] = React.useState();
+  function updateContent() {
+    if (setEditable) {
+      setEditable(false);
+    }
 
-  function handleButtonClick() {
-    setEditable(false);
     if (action === "update") {
-      if (thread.replies.find((item) => String(item.replyId) === itemId)) {
-        const item = [...thread.replies].find(
-          (item) => String(item.replyId) === itemId
-        );
-        const updatedItem = { ...item, content: newContent };
-        const nextReplies = thread.replies.map((reply) =>
-          reply.replyId !== updatedItem.replyId ? reply : updatedItem
-        );
-        const updatedThread = { ...thread, replies: nextReplies };
-        const nextThreads = threads.map((thread) =>
-          thread.id !== updatedThread.id ? thread : updatedThread
-        );
+      const reply = findItem(thread.replies, "replyId", itemId);
+      if (reply) {
+        const newReply = { ...reply, content: newContent };
+        const nextReplies = addUpdatedItem(thread.replies, "replyId", newReply);
+        const newThread = { ...thread, replies: nextReplies };
+        const nextThreads = addUpdatedItem(threads, "id", newThread);
         return setThreads(nextThreads);
-      } else {
-        const comment = thread.find((item) => String(item.id) === itemId);
-        const updatedComment = { ...comment, content: newContent };
-        const nextThreads = threads.map((thread) =>
-          thread.id !== updatedComment.id ? thread : updatedComment
-        );
+      }
+
+      const comment = findItem(threads, "id", itemId);
+      if (comment) {
+        const newComment = { ...comment, content: newContent };
+        const nextThreads = addUpdatedItem(threads, "id", newComment);
         return setThreads(nextThreads);
       }
     }
   }
 
   return (
-    <button className={`button-major ${action}`} onClick={handleButtonClick}>
+    <button className={`button-major ${action}`} onClick={updateContent}>
       {action}
     </button>
   );
