@@ -3,11 +3,11 @@ import ButtonMajor from "../ButtonMajor/ButtonMajor";
 
 function AddComment({
   currentUser,
-  thread,
+  thread = null,
   threads,
   setThreads,
   action = "send",
-  setReply,
+  setReply = null,
 }) {
   const [text, setText] = React.useState("");
   const textarea = React.useRef();
@@ -17,7 +17,6 @@ function AddComment({
     textarea.current.focus();
   }, []);
 
-  // HACK need to add "?" here?
   function handleAddComment(event) {
     event.preventDefault();
     if (!text) return;
@@ -29,8 +28,9 @@ function AddComment({
       score: 0,
       user: {
         image: {
-          png: `./images/avatars/image-${currentUser?.username}.png`,
-          webp: `./images/avatars/image-${currentUser?.username}.webp`,
+          // HACK need to add "?" here?
+          png: `./images/avatars/image-${currentUser.username}.png`,
+          webp: `./images/avatars/image-${currentUser.username}.webp`,
         },
         username: currentUser?.username,
       },
@@ -61,7 +61,7 @@ function AddComment({
         <div className="card-wrapper">
           {/* HACK need to add "?" here?*/}
           <img
-            src={`./images/avatars/image-${currentUser?.username}.webp`}
+            src={`./images/avatars/image-${currentUser.username}.webp`}
             alt=""
           />
           <textarea

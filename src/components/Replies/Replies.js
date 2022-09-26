@@ -9,8 +9,6 @@ function Replies({
   setThreads,
   reply,
   setReply,
-  showModal,
-  setShowModal,
 }) {
   return (
     <>
@@ -24,15 +22,12 @@ function Replies({
                 createdAt={createdAt}
                 score={score}
                 user={user}
-                currentUser={currentUser}
-                threads={threads}
-                thread={thread}
-                setThreads={setThreads}
                 replyId={replyId}
-                // replies={replies}
-                // setReplies={setReplies}
-                showModal={showModal}
-                setShowModal={setShowModal}
+                currentUser={currentUser}
+                thread={thread}
+                threads={threads}
+                setThreads={setThreads}
+                setReply={setReply}
               />
             </li>
           )
@@ -44,8 +39,6 @@ function Replies({
             action={"reply"}
             threads={threads}
             setThreads={setThreads}
-            // replies={replies}
-            // setReplies={setReplies}
             setReply={setReply}
           />
         )}

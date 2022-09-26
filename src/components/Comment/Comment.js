@@ -2,24 +2,20 @@ import React from "react";
 import User from "../User/User";
 import Score from "../Score/Score";
 import ButtonMinor from "../ButtonMinor/ButtonMinor";
-import AddComment from "../AddComment/AddComment";
 import ButtonMajor from "../ButtonMajor/ButtonMajor";
-import Modal from "../Modal/Modal";
 
 function Comment({
   content,
   createdAt,
   score,
   user,
+  replyId,
   currentUser,
   thread,
   threads,
   setThreads,
-  replyId,
   reply,
   setReply,
-  showModal,
-  setShowModal,
 }) {
   const [editable, setEditable] = React.useState(false);
   const [itemId, setItemId] = React.useState();
@@ -39,6 +35,7 @@ function Comment({
             {editable && (
               <textarea
                 className="content"
+                style={{ width: "100%" }}
                 ref={editableContent}
                 value={newContent}
                 onChange={(event) => setNewContent(event.target.value)}>
@@ -46,7 +43,10 @@ function Comment({
               </textarea>
             )}
             {editable || (
-              <p className="content" ref={editableContent}>
+              <p
+                className="content"
+                ref={editableContent}
+                style={{ width: "100%" }}>
                 {content}
               </p>
             )}
@@ -58,8 +58,6 @@ function Comment({
             setReply={setReply}
             user={user}
             currentUser={currentUser}
-            showModal={showModal}
-            setShowModal={setShowModal}
             thread={thread}
             threads={threads}
             setThreads={setThreads}

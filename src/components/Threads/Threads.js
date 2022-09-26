@@ -12,7 +12,7 @@ function Threads({
     // eslint-disable-next-line
     <ul role="list" className="comments">
       {/* HACK need to add "?" here?*/}
-      {threads?.map((thread) => (
+      {threads.map((thread) => (
         <Thread
           key={thread.id}
           thread={thread}

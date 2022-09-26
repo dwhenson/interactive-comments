@@ -11,7 +11,7 @@ function Thread({
   setShowModal,
 }) {
   const { content, createdAt, score, user } = thread;
-  // const [replies, setReplies] = React.useState(thread.replies);
+
   const [reply, setReply] = React.useState(false);
   return (
     <li>
@@ -21,23 +21,23 @@ function Thread({
         score={score}
         user={user}
         currentUser={currentUser}
+        thread={thread}
         reply={reply}
         setReply={setReply}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        thread={thread}
         threads={threads}
+        showModal={showModal}
         setThreads={setThreads}
+        setShowModal={setShowModal}
       />
 
       {(thread.replies.length > 0 || reply) && (
         <Replies
           currentUser={currentUser}
           thread={thread}
-          threads={threads}
-          setThreads={setThreads}
           reply={reply}
           setReply={setReply}
+          threads={threads}
+          setThreads={setThreads}
           showModal={showModal}
           setShowModal={setShowModal}
         />
